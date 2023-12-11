@@ -1,0 +1,47 @@
+#include <iostream>
+
+/*Task 4*/
+void FilltheArray(int **array, int rows, int columns) {
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            // генерируем случайные числа с помощью: (rand() % (end - start + 1) + start), где end - это конечное число (50), а start - начальное число (10)
+            array[i][j] = rand() % 41 + 10;  
+        }
+    }
+}
+
+void ShowArray(int **array, int rows, int columns) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            std::cout << array[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+}
+
+int main()
+{
+    int row = 0;
+    int column = 0;
+    std::cout << "Enter the number of rows: ";
+    std::cin >> row;
+    std::cout << "Enter the number of columns: ";
+    std::cin >> column;
+
+    int **array = new int*[row];  // выделяем массив из количества строк
+    for (int count = 0; count < row; count++) {
+        array[count] = new int[column];  // массив для столбцов
+    }
+
+    FilltheArray(array, row, column);  // заполнение массива случайными числами
+    std::cout << "Array:" << std::endl;
+    ShowArray(array, row, column);  // показ массива на экран
+
+    for (int count = 0; count < row; count++) { // освобождаем память
+        delete[] array[count];
+    }
+    delete[] array;
+
+    return 0;
+}
