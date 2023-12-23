@@ -86,35 +86,35 @@ int main()
 
     /*Task 6*/
     int length6 = 0;
-    int k = 0;
+    int k6 = 0;
     std::cout << "Enter the length of array: ";
     std::cin >> length6; //вводим количество элементов массива
     std::cout << "Enter the k: ";
-    std::cin >> k; //вводим количество элементов для поиска разницы
+    std::cin >> k6; //вводим количество элементов для поиска разницы
 
-    int *nums = new int[length6];  //выделяем массив
+    int *nums6 = new int[length6];  //выделяем массив
     std::cout << "Enter the numbers of array: ";  //заполняем массив перебором
     for (int count = 0; count < length6; count++) {
-        std::cin >> nums[count];
+        std::cin >> nums6[count];
     }
-    BubbleSort(nums, length6); //сортируем массив по возрастанию
-    std::cout << "The minimum differences: " << TheMinDifference(nums, k); //выводим разницу
+    BubbleSort(nums6, length6); //сортируем массив по возрастанию
+    std::cout << "The minimum differences: " << TheMinDifference(nums6, k6); //выводим разницу
 
-    delete[] nums;
+    delete[] nums6;
 
     /*Task 8*/
-    int length8 = 0; //переменная для количества элементов массива
+    int n8 = 0; //переменная для количества элементов массива
     std::cout << "Enter the length of array: ";
-    std::cin >> length8; //вводим количество элементов массива
+    std::cin >> n8; //вводим количество элементов массива
 
-    int *array8 = new int[length8];  //выделяем массив
+    int* nums8 = new int[n8];  //выделяем массив
     std::cout << "Enter the numbers of array: ";  //заполняем массив перебором
-    for (int count = 0; count < length8; count++) {
-        std::cin >> array8[count];
+    for (int count = 0; count < n8; count++) {
+        std::cin >> nums8[count];
     }
 
-    std::cout << "The majority element: " << TheMajorityElement(array8, length8); //выводим искомый элемент
-    delete[] array8;
+    std::cout << "The majority element: " << TheMajorityElement(nums8, n8); //выводим искомый элемент
+    delete[] nums8;
 
     return 0;
 }
