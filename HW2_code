@@ -46,6 +46,27 @@ int TheMinDifference(int *nums, int k) { //функция расчитывающ
     return (max - min); //возвращаем разницу
 }
 
+/*Task 8*/
+int TheMajorityElement(int *array, int length) { //функция для нахождения элемента, которого всех больше в массиве
+    int number = 0; //переменная для количества определеного элемента
+    int max = 0;    //переменная для максимального количества
+    int element = 0;//переменная для сохранения элемента с максимальным количеством
+    for (int i = 0; i < length; i++) { 
+        number = 0;
+        for (int j = 0; j < length; j++) {
+            if (array[i] == array[j])
+                number += 1;
+                element = array[i];
+        }
+        if (number > max)
+            max = number;
+    }
+    if (max >= (length/2))
+        return element;
+    else
+        return 999999;
+}
+
 int main()
 {
     /*Task 4*/
@@ -88,6 +109,20 @@ int main()
     std::cout << "The minimum differences: " << TheMinDifference(nums, k); //выводим разницу
 
     delete[] nums;
+
+    /*task 8*/
+    int length8 = 0;
+    std::cout << "Enter the length of array: ";
+    std::cin >> length8; //вводим количество элементов массива
+
+    int *array8 = new int[length8];  //выделяем массив
+    std::cout << "Enter the numbers of array: ";  //заполняем массив перебором
+    for (int count = 0; count < length8; count++) {
+        std::cin >> array8[count];
+    }
+
+    std::cout << "The majority element: " << TheMajorityElement(array8, length8);
+    delete[] array8;
 
     return 0;
 }
