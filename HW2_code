@@ -47,16 +47,15 @@ int TheMinDifference(int *nums, int k) { //функция расчитывающ
 }
 
 /*Task 8*/
-int TheMajorityElement(int *array, int length) { 
-    int number = 0;
-    int element = 0;
-    for (int i = 0; i < length; i++) { 
-        number = 0;
-        for (int j = 0; j < length; j++) {
-            if (array[i] == array[j])
+int TheMajorityElement(int *array, int length) { //функция для нахождения элемента, который появляется больше чем в половине массива (по условию такой элемент точно есть)
+    int number = 0; //переменная для подсчета количества появлений определенного элемента
+    for (int i = 0; i < length; i++) { //перебором по i берем элемент, поялвения которого будем считать
+        number = 0; 
+        for (int j = 0; j < length; j++) { //считаем сколько раз появился элемент под i, сравнивая его с каждым элементом в массиве
+            if (array[i] == array[j]) //если они равны, количество прибалвяется
                 number += 1;
         }
-        if (number >= (length / 2))
+        if (number >= (length / 2)) //если количество элемента под i превысело половину или равно ей, то выводим значение элемента под i 
             return array[i];
     }
 }
@@ -71,41 +70,40 @@ int main()
     std::cout << "Enter the number of columns: ";
     std::cin >> column; //вводим количество столбцов
 
-    int **array = new int*[row];  // выделяем память для массива из количества строк
+    int **array4 = new int*[row];  // выделяем память для массива из количества строк
     for (int count = 0; count < row; count++) {
-        array[count] = new int[column];  // массив для столбцов
+        array4[count] = new int[column];  // массив для столбцов
     }
 
-    FilltheArray(array, row, column);  // заполняем массив случайными числами через функцию
+    FilltheArray(array4, row, column);  // заполняем массив случайными числами через функцию
     std::cout << "Array:" << std::endl;
-    ShowArray(array, row, column);  // прказываем массив через функцию
+    ShowArray(array4, row, column);  // прказываем массив через функцию
 
     for (int count = 0; count < row; count++) { // освобождаем память
-        delete[] array[count];
+        delete[] array4[count];
     }
-    delete[] array;
+    delete[] array4;
 
     /*Task 6*/
-    int length = 0;
+    int length6 = 0;
     int k = 0;
     std::cout << "Enter the length of array: ";
-    std::cin >> length; //вводим количество элементов массива
+    std::cin >> length6; //вводим количество элементов массива
     std::cout << "Enter the k: ";
     std::cin >> k; //вводим количество элементов для поиска разницы
 
-    int *nums = new int[length];  //выделяем массив
+    int *nums = new int[length6];  //выделяем массив
     std::cout << "Enter the numbers of array: ";  //заполняем массив перебором
-    for (int count = 0; count < length; count++) {
+    for (int count = 0; count < length6; count++) {
         std::cin >> nums[count];
     }
-
-    BubbleSort(nums, length); //сортируем массив по возрастанию
+    BubbleSort(nums, length6); //сортируем массив по возрастанию
     std::cout << "The minimum differences: " << TheMinDifference(nums, k); //выводим разницу
 
     delete[] nums;
 
-    /*task 8*/
-    int length8 = 0;
+    /*Task 8*/
+    int length8 = 0; //переменная для количества элементов массива
     std::cout << "Enter the length of array: ";
     std::cin >> length8; //вводим количество элементов массива
 
@@ -115,7 +113,7 @@ int main()
         std::cin >> array8[count];
     }
 
-    std::cout << "The majority element: " << TheMajorityElement(array8, length8);
+    std::cout << "The majority element: " << TheMajorityElement(array8, length8); //выводим искомый элемент
     delete[] array8;
 
     return 0;
