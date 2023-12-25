@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 /*Task 4*/
 void FilltheArray(int **array, int rows, int columns) { //Создаем функцию для заполнения массива
@@ -62,6 +63,30 @@ int TheMinDifference(int *nums, int k) { //функция расчитывающ
     }
     return (max - min); //возвращаем разницу
 }
+
+/*Task 7*/
+int findLucky(std::vector<int>& arr) { // Функция для поиска счастливого числа
+    std::vector<int> frequency(arr.size() + 1, 0); // Инициализируем вектор частот
+    // frequency - вектор, хранящий количество вхождений чисел массива
+
+
+    //  Проходим по элементам массива и увеличиваем соответствующий счетчик
+    for (int num : arr) {
+        if (num >= 1 && num <= arr.size()) { // Проверяем, что число входит в нужный диапазон
+            frequency[num]++; // Увеличиваем счетчик частоты вхождения числа
+        }
+    }
+
+
+    for (int i = arr.size(); i >= 1; i--) {  // Проходим по счетчикам, начиная с конца
+        if (frequency[i] == i) { // Если счетчик равен его индексу (числу), то это счастливое число
+            return i; // Возвращаем счастливое число
+        }
+    }
+
+    return -1; // Если нет счастливого числа, возвращаем -1
+}
+
 
 /*Task 8*/
 int TheMajorityElement(int *array, int length) { //функция для нахождения элемента, который появляется больше чем в половине массива (по условию такой элемент точно есть)
@@ -140,7 +165,7 @@ int main()
 
     } 
     while (operation != ' '); //Цикл продолжается до тех пор, пока операция не будет равна пробелу
-    return 0;
+    
 
 
 
@@ -161,6 +186,26 @@ int main()
     std::cout << "The minimum differences: " << TheMinDifference(nums6, k6); //выводим разницу
 
     delete[] nums6;
+
+     /*Task 7*/
+     int n; // Переменная для хранения размера массива
+     std::cout << "Enter the size of the array: ";
+     std::cin >> n;  // Вводим размер массива
+    
+     std::vector<int> arr(n); // Создаем вектор для хранения элементов массива
+     std::cout << "Enter the array elements: ";
+     for (int i = 0; i < n; i++) { // Цикл для ввода элементов массива
+         std::cin >> arr[i]; // Вводим элементы массива
+     }
+    
+    int luckyNum = findLucky(arr); // Вызываем функцию поиска счастливого числа
+    if (luckyNum != -1) {
+         std::cout << "Lucky Number: " << luckyNum; // Выводим счастливое число, если оно найдено
+     }
+     else {
+         std::cout << "No lucky number found."; // Выводим сообщение, если счастливое число не найдено
+     }
+
 
     /*Task 8*/
     int n8 = 0; //переменная для количества элементов массива
