@@ -18,6 +18,23 @@ void ShowArray(int **array, int rows, int columns) { //Создаем функц
     }
 }
 
+/*Task 5*/
+int summa(int a, int b) {  // Функция сложения
+    return a + b; // возвращает сумму двух целых чисел
+}
+
+int subtract(int a, int b) { // Функция вычитания
+    return a - b; // возвращает разность двух целых чисел
+}
+
+int multiply(int a, int b) { // Функция умножения
+    return a * b; // возвращает произведение двух целых чисел
+}
+
+int divide(int a, int b) { // Функция деления
+    return a / b; // возвращает частное двух целых чисел
+}
+
 /*Task 6*/
 /*чтобы найти меньшую разницу между наибольшим и наименьшим числом из k чисел,
  следует рассматривать k минимальных чисел из массива,
@@ -83,6 +100,49 @@ int main()
         delete[] array4[count];
     }
     delete[] array4;
+
+
+    //Task 5//
+    int num1, num2; //Объявление переменных типа int
+    char operation; //Объявление переменной типа  char
+    int (*funcPtr)(int, int); // Объявление указателя на функцию
+
+    do {
+        std::cout << "Enter two numbers and the operation (+, -, *, /) separated by a space (Ex: 4 5+) : ";
+        std::cin >> num1; //ввод первого пареметра 
+        std::cin >> num2; //ввод второго пареметра 
+        operation = getchar(); //Операция вводится с помощью getchar() и сохраняется в переменной operation
+
+        std::cout << "To complete the work at the site of the operation, enter a space \n";
+
+        // Установка указателя на нужную функцию в зависимости от знака операции
+        switch (operation) { //оператор выводит на экран результат конкретной операции в зависимости от введенного символа
+            case '+':
+              funcPtr = summa;
+              break;
+             case '-':
+                funcPtr = subtract;
+                break;
+             case '*':
+                funcPtr = multiply;
+                break;
+             case '/':
+                funcPtr = divide;
+                break;
+
+   //Если операция не соответствует ни одному из знаков операций, выводится сообщение об ошибке и цикл продолжается
+              default:
+                if (operation!=' ')
+                 std::cout << "Invalid value" << std::endl;
+                 continue;
+                    }
+    std::cout << "Result: " << funcPtr(num1, num2) << std::endl;// Выводится результат выполнения операции, вызванной через указатель на функцию
+
+    } 
+    while (operation != ' '); //Цикл продолжается до тех пор, пока операция не будет равна пробелу
+    return 0;
+
+
 
     /*Task 6*/
     int length6 = 0;
